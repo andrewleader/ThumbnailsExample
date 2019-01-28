@@ -13,18 +13,19 @@
                 {
                     "type": "Image",
                     "url": "{thumbnail}",
-                    "size": "stretch"
+                    "height": "70px",
+                    "horizontalAlignment": "center"
                 }
             ]
         },
         {
             "type": "TextBlock",
-            "horizontalAlignment": "Center",
+            "horizontalAlignment": "center",
             "text": "{name}"
         },
         {
             "type": "TextBlock",
-            "horizontalAlignment": "Center",
+            "horizontalAlignment": "center",
             "text": "{lastModified}",
             "isSubtle": true
         }

@@ -8,12 +8,17 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    x:Name="ThisControl">
+    x:Name="ThisControl"
+    xmlns:converters="using:ThumbnailsUwp.Converters">
+
+    <UserControl.Resources>
+        <converters:DriveItemToDataConverter x:Key="DriveItemToDataConverter"/>
+    </UserControl.Resources>
 
     <Border x:Name="ContentContainer">
         <local:RemoteAdaptiveCardControl
             TemplateUrl="https://raw.githubusercontent.com/andrewleader/ThumbnailsExample/master/templates/thumbnail.json"
             HostConfigUrl="https://raw.githubusercontent.com/andrewleader/ThumbnailsExample/master/templates/thumbnail-hostConfig.json"
-            Data="{Binding DriveItem, ElementName=ThisControl}"/>
+            Data="{Binding DriveItem, ElementName=ThisControl, Converter={StaticResource DriveItemToDataConverter}}"/>
     </Border>
 </UserControl>

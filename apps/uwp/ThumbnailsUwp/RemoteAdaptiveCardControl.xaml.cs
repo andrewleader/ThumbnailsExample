@@ -75,7 +75,7 @@ namespace ThumbnailsUwp
         private int _opCode = 0;
         private async void Render()
         {
-            if (TemplateUrl == null || HostConfigUrl == null)
+            if (TemplateUrl == null || HostConfigUrl == null || Data == null)
             {
                 ContentContainer.Child = null;
                 return;
@@ -93,9 +93,15 @@ namespace ThumbnailsUwp
                     return;
                 }
 
-                JToken transformedCard = JsonTransformer.Transform(template, Data == null ? null : JObject.FromObject(Data), new Dictionary<string, JToken>());
+                JToken transformedCard = JsonTransformer.Transform(template, JObject.FromObject(Data), new Dictionary<string, JToken>());
+                string cardString = transformedCard.ToString();
 
-                ContentContainer.Child = renderer.RenderAdaptiveCardFromJsonString(transformedCard.ToString()).FrameworkElement;
+                var renderResult = renderer.RenderAdaptiveCardFromJsonString(cardString);
+                if (renderResult.Errors.Count > 0)
+                {
+                    throw new Exception(string.Join("\n", renderResult.Errors.Select(i => i.Message)));
+                }
+                ContentContainer.Child = renderResult.FrameworkElement;
             }
             catch (Exception ex)
             {
@@ -142,7 +148,9 @@ namespace ThumbnailsUwp
 
             protected override JObject CreateObject(string str)
             {
-                return JObject.Parse(str);
+                var template = JObject.Parse(str);
+                template.Remove("data");
+                return template;
             }
         }
 

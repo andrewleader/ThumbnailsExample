@@ -13,8 +13,9 @@
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <local:ThumbnailControl
-                        Width="90"
-                        Height="90"/>
+                        Width="160"
+                        Height="160"
+                        DriveItem="{Binding}"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>

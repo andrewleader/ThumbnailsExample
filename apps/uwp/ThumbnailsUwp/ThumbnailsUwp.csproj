@@ -98,6 +98,7 @@
     <Compile Include="CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DriveItemToDataConverter.cs" />
     <Compile Include="FilesPage.xaml.cs">
       <DependentUpon>FilesPage.xaml</DependentUpon>
     </Compile>
