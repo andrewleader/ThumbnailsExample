@@ -1,0 +1,34 @@
+{
+    "type": "AdaptiveCard",
+    "data": {
+        "name": "budget",
+        "lastModified": "Nov 17, 2017",
+        "thumbnail": "http://static1.squarespace.com/static/5248a8c6e4b0a4c7037edb93/t/55ce40dce4b0fe0a5d72daa8/1439580380983/Excel2013FileIcon.png"
+      },
+    "body": [
+        {
+            "type": "Container",
+            "style": "emphasis",
+            "items": [
+                {
+                    "type": "Image",
+                    "url": "{thumbnail}",
+                    "size": "stretch"
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "horizontalAlignment": "Center",
+            "text": "{name}"
+        },
+        {
+            "type": "TextBlock",
+            "horizontalAlignment": "Center",
+            "text": "{lastModified}",
+            "isSubtle": true
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
