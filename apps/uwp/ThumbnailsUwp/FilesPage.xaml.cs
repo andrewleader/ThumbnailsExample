@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -32,6 +33,33 @@ namespace ThumbnailsUwp
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            await RefreshAsync();
+
+            base.OnNavigatedTo(e);
+        }
+
+        private void ShowNotification(string message)
+        {
+            // Get the main page that contains the InAppNotification
+            var mainPage = (Window.Current.Content as Frame).Content as MainPage;
+
+            // Get the notification control
+            var notification = mainPage.FindName("Notification") as InAppNotification;
+
+            notification.Show(message);
+        }
+
+        private async void ButtonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            RemoteAdaptiveCardControl.ClearCache();
+
+            await RefreshAsync();
+        }
+
+        private async Task RefreshAsync()
+        {
+            RecentFilesGridView.ItemsSource = null;
+
             // Get the Graph client from the service
             var graphClient = MicrosoftGraphService.Instance.GraphProvider;
 
@@ -46,19 +74,6 @@ namespace ThumbnailsUwp
             {
                 ShowNotification($"Exception getting events: {ex.Message}");
             }
-
-            base.OnNavigatedTo(e);
-        }
-
-        private void ShowNotification(string message)
-        {
-            // Get the main page that contains the InAppNotification
-            var mainPage = (Window.Current.Content as Frame).Content as MainPage;
-
-            // Get the notification control
-            var notification = mainPage.FindName("Notification") as InAppNotification;
-
-            notification.Show(message);
         }
     }
 }

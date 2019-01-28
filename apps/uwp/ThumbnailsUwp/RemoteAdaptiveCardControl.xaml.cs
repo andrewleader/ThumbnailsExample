@@ -29,8 +29,11 @@ namespace ThumbnailsUwp
             this.InitializeComponent();
         }
 
-
-
+        public static void ClearCache()
+        {
+            TemplateCache.ClearCache();
+            RendererCache.ClearCache();
+        }
 
         public object Data
         {
@@ -144,7 +147,12 @@ namespace ThumbnailsUwp
 
         private class TemplateCache : BaseCache<JObject>
         {
-            public static TemplateCache Current { get; } = new TemplateCache();
+            public static TemplateCache Current { get; private set; } = new TemplateCache();
+
+            public static void ClearCache()
+            {
+                Current = new TemplateCache();
+            }
 
             protected override JObject CreateObject(string str)
             {
@@ -156,7 +164,12 @@ namespace ThumbnailsUwp
 
         private class RendererCache : BaseCache<AdaptiveCardRenderer>
         {
-            public static RendererCache Current { get; } = new RendererCache();
+            public static RendererCache Current { get; private set; } = new RendererCache();
+
+            public static void ClearCache()
+            {
+                Current = new RendererCache();
+            }
 
             protected override AdaptiveCardRenderer CreateObject(string str)
             {

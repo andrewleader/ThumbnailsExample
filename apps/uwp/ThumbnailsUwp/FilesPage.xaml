@@ -9,12 +9,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <GridView x:Name="RecentFilesGridView">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button
+            x:Name="ButtonRefresh"
+            Content="Refresh"
+            Click="ButtonRefresh_Click"/>
+        
+        <GridView x:Name="RecentFilesGridView" Grid.Row="1">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <local:ThumbnailControl
-                        Width="160"
-                        Height="160"
+                        Width="220"
+                        Height="220"
                         DriveItem="{Binding}"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
