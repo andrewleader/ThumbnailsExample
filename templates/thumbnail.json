@@ -28,7 +28,8 @@
             "type": "TextBlock",
             "horizontalAlignment": "center",
             "text": "{lastModified}",
-            "isSubtle": true
+            "isSubtle": true,
+            "spacing": "none"
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
