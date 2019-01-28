@@ -21,7 +21,8 @@
         {
             "type": "TextBlock",
             "horizontalAlignment": "center",
-            "text": "{name}"
+            "text": "{name}",
+            "weight": "bolder"
         },
         {
             "type": "TextBlock",
